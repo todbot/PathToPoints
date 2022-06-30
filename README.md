@@ -1,5 +1,5 @@
 # PathToPoints
-SVG Paths to array of points - https://shinao.github.io/PathToPoints/
+SVG Paths to array of points - https://todbot.github.io/PathToPoints/
 
 Extract points from SVG paths or generate them from a text.
 
