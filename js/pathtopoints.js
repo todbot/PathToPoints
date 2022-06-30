@@ -233,7 +233,7 @@ function generatePointsFromSvg() {
         for (c = 0; c < Raphael.getTotalLength(path); c += step_point) {
             var point = Raphael.getPointAtLength(path, c);
 
-            data_points += point.x + "," + point.y + "&#13;";
+            data_points += point.x.toFixed(3) + "," + point.y.toFixed(3) + ",&#13;";
             var circle = paper.circle(point.x * paths_info.scale, point.y * paths_info.scale, 2)
                 .attr("fill", color)
                 .attr("stroke", "none")
@@ -253,7 +253,7 @@ function generatePointsFromSvg() {
 
 function addBelow(name, color, data, nb_pts) {
       var below = "";
-      
+
       below += "<div class='bellows__item'><div class='bellows__header' style='background-color:" + color + "'>";
       below += name ;
       below += "<span>" + nb_pts + " pts</span>";
