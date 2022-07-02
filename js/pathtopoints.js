@@ -227,21 +227,24 @@ function generatePointsFromSvg() {
         var path = $($(paths).get(i)).attr('d').replace(' ', ',');
 
         // get points at regular intervals
-        var data_points = "";
+        var data_points = ""
+        data_points += "path"+i+"_w = " + paths_info.width.toFixed(3) + "\n"
+        data_points += "path"+i+"_h = " + paths_info.height.toFixed(3) + "\n"
+        data_points += "path"+i+" = [";
         var color = randomColor();
         var c;
         for (c = 0; c < Raphael.getTotalLength(path); c += step_point) {
             var point = Raphael.getPointAtLength(path, c);
 
-            data_points += point.x.toFixed(3) + "," + point.y.toFixed(3) + ",&#13;";
+            data_points += "(" + point.x.toFixed(3) + "," + point.y.toFixed(3) + "),";
             var circle = paper.circle(point.x * paths_info.scale, point.y * paths_info.scale, 2)
                 .attr("fill", color)
                 .attr("stroke", "none")
                 .transform("T" + offset_path_x * paths_info.scale + "," + offset_path_y * paths_info.scale);
         }
-
+        data_points += "]\n";
         all_points_count += c;
-        all_points += data_points + "#&#13;";
+        all_points += data_points + "&#13;";
         addBelow("Path " + i, color, data_points, c / step_point);
     }
 
